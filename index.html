@@ -1,226 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Chuen-Fai Tse — IT Support Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF9;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --text-muted: #8A8A8A;
+            --accent: #2563EB;
+            --accent-light: #EFF6FF;
+            --accent-mid: #BFDBFE;
+            --border: #E8E8E4;
+            --border-light: #F0F0EC;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<title>Sam Tse | IT Support Engineer | Microsoft 365 | Windows Server</title>
+        html { scroll-behavior: smooth; }
 
-<meta name="description"
-content="Sam Tse – IT Support Engineer in Edinburgh specialising in Microsoft 365, Windows Server, Active Directory, ServiceNow and enterprise IT infrastructure support.">
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
 
-<meta name="keywords"
-content="IT Support Engineer Edinburgh, Microsoft 365 Administrator, Windows Server, Active Directory, ServiceNow IT Support, Desktop Support Engineer UK, Cloud Infrastructure Support">
+        /* --- NAV --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250,250,249,0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); background: var(--accent-light); }
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            position: relative;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-primary);
+            position: absolute;
+            left: 8px;
+            transition: all 0.3s;
+        }
+        .nav-hamburger span:nth-child(1) { top: 11px; }
+        .nav-hamburger span:nth-child(2) { top: 17px; }
+        .nav-hamburger span:nth-child(3) { top: 23px; }
+        .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg); top: 17px; }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg); top: 17px; }
 
-<link rel="stylesheet" href="style.css">
+        /* --- HERO --- */
+        .hero {
+            padding: 140px 32px 80px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ECFDF5;
+            color: #047857;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+            animation: fadeUp 0.6s ease both;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 7px; height: 7px;
+            background: #10B981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(38px, 5.5vw, 62px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            animation: fadeUp 0.6s ease 0.1s both;
+        }
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 24px;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            animation: fadeUp 0.6s ease 0.3s both;
+        }
+        .hero-meta a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .hero-meta a:hover { color: var(--accent); }
+        .hero-meta svg { vertical-align: -2px; margin-right: 5px; }
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 28px;
+            animation: fadeUp 0.6s ease 0.4s both;
+        }
+        .hero-tags span {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 8px;
+        }
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        /* --- SECTIONS --- */
+        .section {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 36px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
 
-<!-- Google indexing schema -->
+        /* --- SUMMARY --- */
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
 
-<script type="application/ld+json">
+        /* --- EXPERIENCE --- */
+        .timeline { display: flex; flex-direction: column; gap: 24px; }
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .timeline-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .timeline-card:hover::before { opacity: 1; }
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .timeline-role {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+        .timeline-date {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+        .timeline-company {
+            font-size: 14.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .timeline-company strong { color: var(--text-primary); font-weight: 600; }
+        .timeline-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .timeline-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 14.5px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+        .timeline-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-mid);
+        }
 
-{
-"@context": "https://schema.org",
-"@type": "Person",
-"name": "Sam Chuen-Fai Tse",
-"jobTitle": "IT Support Engineer",
-"address": {
-"@type": "PostalAddress",
-"addressLocality": "Edinburgh",
-"addressCountry": "United Kingdom"
-},
-"email": "codefzer@gmail.com",
-"url": "https://sam-tse.netlify.app",
-"sameAs": [
-"https://linkedin.com",
-"https://github.com"
-],
-"knowsAbout": [
-"Microsoft 365",
-"Windows Server",
-"Active Directory",
-"ServiceNow",
-"AWS",
-"Enterprise IT Support"
-]
-}
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 22px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s;
+        }
+        .skill-card:hover {
+            border-color: var(--accent-mid);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .skill-icon {
+            width: 42px; height: 42px;
+            background: var(--accent-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .skill-icon svg { width: 20px; height: 20px; color: var(--accent); }
+        .skill-name {
+            font-weight: 500;
+            font-size: 14.5px;
+            color: var(--text-primary);
+        }
 
-</script>
+        /* --- EDUCATION --- */
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .edu-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-mid));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .edu-icon svg { width: 26px; height: 26px; color: var(--accent); }
+        .edu-degree {
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .edu-school { font-size: 14.5px; color: var(--text-secondary); margin-top: 4px; }
 
+        /* --- CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s;
+        }
+        .contact-card:hover {
+            border-color: var(--accent-mid);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .contact-icon {
+            width: 46px; height: 46px;
+            background: var(--accent-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-icon svg { width: 20px; height: 20px; color: var(--accent); }
+        .contact-label { font-size: 12px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        .contact-value { font-size: 14.5px; color: var(--text-primary); font-weight: 500; margin-top: 2px; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 32px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-light);
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(250,250,249,0.96);
+                backdrop-filter: blur(16px);
+                padding: 16px 24px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-md);
+            }
+            .nav-hamburger { display: block; }
+            .hero { padding: 120px 20px 60px; }
+            .section { padding: 0 20px 60px; }
+            .timeline-header { flex-direction: column; }
+            .timeline-card { padding: 24px; }
+            .edu-card { flex-direction: column; text-align: center; }
+            .summary-card { padding: 24px; }
+        }
+    </style>
 </head>
-
 <body>
 
+<!-- NAV -->
+<nav id="nav">
+    <div class="nav-inner">
+        <div class="nav-logo">Sam<span>.</span>Tse</div>
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
 <header class="hero">
-
-<img src="assets/profile.jpg" class="profile">
-
-<h1>Sam Chuen-Fai Tse</h1>
-
-<h2 class="typing"></h2>
-
-<p class="summary">
-
-IT Support Engineer with 15+ years of experience supporting
-enterprise IT infrastructure including Microsoft 365,
-Windows Server, Active Directory and hybrid cloud platforms.
-
-</p>
-
-<div class="buttons">
-
-<a href="assets/sam_tse_cv.pdf" download class="btn">
-Download CV
-</a>
-
-<a href="mailto:codefzer@gmail.com" class="btn secondary">
-Contact
-</a>
-
-</div>
-
-<div class="social">
-
-<a href="https://linkedin.com">
-<i class="fab fa-linkedin"></i>
-</a>
-
-<a href="https://github.com">
-<i class="fab fa-github"></i>
-</a>
-
-</div>
-
+    <div class="hero-badge">Available Immediately</div>
+    <h1>Sam Chuen-Fai Tse</h1>
+    <p class="hero-subtitle">IT Support Engineer · Systems Administration · Cloud &amp; Infrastructure</p>
+    <div class="hero-meta">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Balerno, Edinburgh, UK
+        </span>
+        <span>
+            <a href="mailto:codefzer@gmail.com">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                codefzer@gmail.com
+            </a>
+        </span>
+    </div>
+    <div class="hero-tags">
+        <span>IT Support</span>
+        <span>Systems Admin</span>
+        <span>Cloud (AWS)</span>
+        <span>Microsoft 365</span>
+        <span>Network Security</span>
+    </div>
 </header>
 
-<section class="skills">
-
-<h2>Technical Skills</h2>
-
-<div class="grid">
-
-<div class="card">
-<i class="fa-solid fa-cloud"></i>
-<h3>Microsoft 365</h3>
-<p>Teams, SharePoint, Exchange, OneDrive</p>
-</div>
-
-<div class="card">
-<i class="fa-solid fa-server"></i>
-<h3>Windows Server</h3>
-<p>Active Directory & Group Policy</p>
-</div>
-
-<div class="card">
-<i class="fa-solid fa-ticket"></i>
-<h3>ServiceNow</h3>
-<p>Incident & Request Management</p>
-</div>
-
-<div class="card">
-<i class="fa-solid fa-network-wired"></i>
-<h3>Networking</h3>
-<p>Firewall, VPN, LAN/WAN</p>
-</div>
-
-<div class="card">
-<i class="fa-solid fa-desktop"></i>
-<h3>Enterprise IT Support</h3>
-<p>Windows & macOS environments</p>
-</div>
-
-<div class="card">
-<i class="fa-solid fa-cloud-arrow-up"></i>
-<h3>Cloud Platforms</h3>
-<p>AWS & Microsoft 365</p>
-</div>
-
-</div>
-
+<!-- ABOUT -->
+<section class="section reveal" id="about">
+    <h2 class="section-title">Professional Summary</h2>
+    <div class="summary-card">
+        Proactive and versatile IT professional with extensive experience in onsite support, systems administration, and cloud technologies. Skilled in managing hybrid infrastructures, improving IT operations, and delivering reliable end-user support in enterprise environments. Proven ability to troubleshoot complex technical issues, maintain secure IT infrastructure, and collaborate effectively with users, vendors, and cross-functional teams.
+    </div>
 </section>
 
-<section class="experience">
+<!-- EXPERIENCE -->
+<section class="section reveal" id="experience">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
 
-<h2>Professional Experience</h2>
+        <!-- Job 1 -->
+        <div class="timeline-card">
+            <div class="timeline-header">
+                <div class="timeline-role">IT Support Engineer</div>
+                <div class="timeline-date">Feb 2023 – Feb 2026</div>
+            </div>
+            <div class="timeline-company"><strong>Hemmersbach GmbH &amp; Co. KG</strong> · Edinburgh, UK</div>
+            <ul class="timeline-list">
+                <li>Delivered onsite Level 2 IT support in an enterprise environment, serving as a key technical contact for end-users at Aegon UK.</li>
+                <li>Utilised ServiceNow for incident and service request management, ensuring accurate documentation and SLA compliance.</li>
+                <li>Supported Microsoft 365 services (Teams, SharePoint Online, OneDrive) including access management, collaboration issues, and sync troubleshooting.</li>
+                <li>Troubleshot Windows and macOS environments, performing device installation, imaging, configuration, and build bench administration.</li>
+                <li>Managed full hardware lifecycle processes, including provisioning, diagnostics, break-fix coordination, asset tracking, inventory management, and compliant disposal.</li>
+            </ul>
+        </div>
 
-<div class="timeline">
+        <!-- Job 2 -->
+        <div class="timeline-card">
+            <div class="timeline-header">
+                <div class="timeline-role">Information Technology Officer</div>
+                <div class="timeline-date">Dec 2010 – Jun 2022</div>
+            </div>
+            <div class="timeline-company"><strong>Yan Fook Theological Seminary</strong> · Hong Kong</div>
+            <ul class="timeline-list">
+                <li>Administered Microsoft 365 services including Exchange Online, SharePoint, Teams, and OneDrive.</li>
+                <li>Managed user lifecycle administration, including account provisioning, device builds, and access control.</li>
+                <li>Led the migration of legacy library and student database systems to AWS, improving scalability and system resilience.</li>
+                <li>Provided IT support across desktop, server, AV, CCTV, printers, and applications, ensuring SLA compliance.</li>
+                <li>Managed and secured network infrastructure including SonicWall firewalls, routers, LAN/WAN, VPN, and NAS.</li>
+                <li>Coordinated with vendors on software and hardware procurement and maintenance.</li>
+                <li>Oversaw continuous development of the institutional website and ICT resources.</li>
+            </ul>
+        </div>
 
-<div class="timeline-item">
+        <!-- Job 3 -->
+        <div class="timeline-card">
+            <div class="timeline-header">
+                <div class="timeline-role">Solutions Consultant</div>
+                <div class="timeline-date">Jul 2008 – Jun 2010</div>
+            </div>
+            <div class="timeline-company"><strong>MightyProf Co. Ltd</strong> · Hong Kong</div>
+            <ul class="timeline-list">
+                <li>Delivered professional services including solution planning, system deployment, and integration.</li>
+                <li>Conducted customer review meetings and provided project progress updates.</li>
+                <li>Worked closely with hardware vendors to deliver integrated solutions.</li>
+                <li>Collaborated with clients and designers on budget planning and project timelines.</li>
+            </ul>
+        </div>
 
-<h3>IT Support Engineer</h3>
+        <!-- Job 4 -->
+        <div class="timeline-card">
+            <div class="timeline-header">
+                <div class="timeline-role">Project Engineer</div>
+                <div class="timeline-date">Nov 2003 – May 2008</div>
+            </div>
+            <div class="timeline-company"><strong>The Chinese University of Hong Kong</strong> · Hong Kong</div>
+            <ul class="timeline-list">
+                <li>Maintained and administered Human-Computer Communications Laboratory infrastructure.</li>
+                <li>Supported academic programmes and research through reliable technical systems management.</li>
+            </ul>
+        </div>
 
-<span>Hemmersbach GmbH & Co. KG — Edinburgh</span>
+        <!-- Job 5 -->
+        <div class="timeline-card">
+            <div class="timeline-header">
+                <div class="timeline-role">Programmer</div>
+                <div class="timeline-date">Sep 2002 – Oct 2003</div>
+            </div>
+            <div class="timeline-company"><strong>Microware Limited</strong> · Hong Kong</div>
+            <ul class="timeline-list">
+                <li>Developed a Human Resource Management Information System using ASP.NET.</li>
+                <li>Designed a data upload system for Symbol™ barcode readers using the vendor SDK.</li>
+            </ul>
+        </div>
 
-<p class="date">Feb 2023 – Feb 2026</p>
+        <!-- Job 6 -->
+        <div class="timeline-card">
+            <div class="timeline-header">
+                <div class="timeline-role">Programmer</div>
+                <div class="timeline-date">Apr 2000 – Sep 2002</div>
+            </div>
+            <div class="timeline-company"><strong>Valentia Technology and System Co. Ltd</strong> · Hong Kong</div>
+            <ul class="timeline-list">
+                <li>Developed kiosk applications using Visual Basic.</li>
+                <li>Implemented payment gateway integration using JSP and Oracle databases.</li>
+            </ul>
+        </div>
 
-<ul>
-
-<li>Delivered Level 2 enterprise IT support in corporate environment</li>
-
-<li>Supported Microsoft 365 including Teams, SharePoint and OneDrive</li>
-
-<li>Managed incidents and service requests via ServiceNow</li>
-
-<li>Troubleshot Windows and macOS desktop systems</li>
-
-<li>Managed hardware lifecycle including provisioning and disposal</li>
-
-</ul>
-
-</div>
-
-<div class="timeline-item">
-
-<h3>Information Technology Officer</h3>
-
-<span>Yan Fook Theological Seminary — Hong Kong</span>
-
-<p class="date">2011 – 2023</p>
-
-<ul>
-
-<li>Administered Windows Server infrastructure</li>
-
-<li>Managed Active Directory & Group Policy</li>
-
-<li>Maintained firewall, VPN and network infrastructure</li>
-
-<li>Migrated legacy systems to AWS cloud platform</li>
-
-<li>Provided organisation-wide IT support and training</li>
-
-</ul>
-
-</div>
-
-</div>
-
+    </div>
 </section>
 
-<section class="contact">
+<!-- SKILLS -->
+<section class="section reveal" id="skills">
+    <h2 class="section-title">Core Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div class="skill-name">Microsoft 365 (Teams, SharePoint, OneDrive, Exchange)</div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M20 15h2M9 2v2M9 20v2M2 9h2M20 9h2"/></svg>
+            </div>
+            <div class="skill-name">Windows &amp; macOS Support</div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4-4v-2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="skill-name">Active Directory &amp; User Lifecycle Management</div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="skill-name">IT Service Management (ServiceNow, SLA-driven)</div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 00-2-2H6a2 2 0 00-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 01-.9 1.45H3.62a1 1 0 01-.9-1.45L4 16"/></svg>
+            </div>
+            <div class="skill-name">Hardware Lifecycle Management &amp; Asset Tracking</div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="skill-name">Cloud Platforms (AWS, Microsoft 365)</div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div class="skill-name">End-User Technical Support</div>
+        </div>
+    </div>
+</section>
 
-<h2>Contact</h2>
+<!-- EDUCATION -->
+<section class="section reveal" id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+        <div class="edu-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+        </div>
+        <div>
+            <div class="edu-degree">B.Sc. in Computer Engineering</div>
+            <div class="edu-school">University of Manitoba · Winnipeg, Manitoba, Canada</div>
+        </div>
+    </div>
+</section>
 
-<p>
-
-📍 Balerno, Edinburgh, United Kingdom  
-📧 codefzer@gmail.com
-
-</p>
-
+<!-- CONTACT -->
+<section class="section reveal" id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-grid">
+        <a href="mailto:codefzer@gmail.com" class="contact-card">
+            <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+            </div>
+            <div>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">codefzer@gmail.com</div>
+            </div>
+        </a>
+        <div class="contact-card">
+            <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+                <div class="contact-label">Location</div>
+                <div class="contact-value">Balerno, Edinburgh, UK</div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <footer>
-
-<p>© 2026 Sam Tse</p>
-
+    &copy; 2026 Sam Chuen-Fai Tse. All rights reserved.
 </footer>
 
-<script src="script.js"></script>
+<script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
 
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
